@@ -10,15 +10,23 @@ import UIKit
 
 class ExpandedCellView: UIView, CardCell {
 
-    let indexLabel = UILabel()
-    let priceLabel = UILabel()
-    let requestsView = InfoView()
-    let pledgeView = InfoView()
-    let weightView = InfoView()
-    let senderImageView = UIImageView()
-    let senderNameLabel = UILabel()
-    let addressView = ExpandedInfoView()
-    let deliveryView = ExpandedInfoView()
+    private let indexLabel = UILabel()
+    private let priceLabel = UILabel()
+    private let requestsView = InfoView()
+    private let pledgeView = InfoView()
+    private let weightView = InfoView()
+    private let senderImageView = UIImageView()
+    private let senderNameLabel = UILabel()
+    private let addressView = ExpandedInfoView()
+    private let deliveryView = ExpandedInfoView()
+    
+    private let ribbonView = UIView()
+    private let headerImageView = UIImageView()
+    private let requestsLabel = UILabel()
+    
+    private let senderContainerView = UIView()
+    private let infoViewsContainerView = UIView()
+    private let requestButtonContainerview = UIView()
     
     var deliveryDate = Date() {
         didSet {
@@ -37,16 +45,6 @@ class ExpandedCellView: UIView, CardCell {
             updateRequestsLabel()
         }
     }
-    
-    private let ribbonView = UIView()
-    private let headerImageView = UIImageView()
-    private let senderLabel = UILabel()
-    private let requestButton = UIButton()
-    private let requestsLabel = UILabel()
-    
-    private let senderContainerView = UIView()
-    private let infoViewsContainerView = UIView()
-    private let requestButtonContainerview = UIView()
     
     init() {
         super.init(frame: .zero)
@@ -173,9 +171,10 @@ extension ExpandedCellView {
 extension ExpandedCellView {
     
     private func setupSenderContainerView() {
-        configureSenderViews()
-        
         let separatorView = SeparatorView()
+        let senderLabel = UILabel()
+        
+        configureSenderViews(senderLabel)
         
         addSubview(senderContainerView)
         senderContainerView.addSubview(senderLabel)
@@ -206,7 +205,7 @@ extension ExpandedCellView {
         ])
     }
     
-    private func configureSenderViews() {
+    private func configureSenderViews(_ senderLabel: UILabel) {
         senderContainerView.makeAutoLayout()
         
         senderLabel.font = .systemFont(ofSize: FontConstants.small)
@@ -291,7 +290,9 @@ extension ExpandedCellView {
 extension ExpandedCellView {
     
     private func setupRequestButtonContainerview() {
-        configureRequestsViews()
+        let requestButton = UIButton()
+        
+        configureRequestsViews(requestButton)
         
         addSubview(requestButtonContainerview)
         requestButtonContainerview.addSubview(requestButton)
@@ -313,7 +314,7 @@ extension ExpandedCellView {
         ])
     }
     
-    private func configureRequestsViews() {
+    private func configureRequestsViews(_ requestButton: UIButton) {
         requestButtonContainerview.makeAutoLayout()
         
         requestButton.applyRoundedCorners()

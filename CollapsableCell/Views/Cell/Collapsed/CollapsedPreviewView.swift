@@ -10,21 +10,19 @@ import UIKit
 
 class CollapsedPreviewView: UIView, CardCell {
 
-    let indexLabel = UILabel()
-    let addressView = CollapsedAddressView()
-    let requestsView = InfoView()
-    let pledgeView = InfoView()
-    let weightView = InfoView()
+    private let indexLabel = UILabel()
+    private let addressView = CollapsedAddressView()
+    private let requestsView = InfoView()
+    private let pledgeView = InfoView()
+    private let weightView = InfoView()
+    private let ribbonView = UIView()
+    private let dateView = InfoView()
     
     var date = Date() {
         didSet {
             updateDateView()
         }
     }
-    
-    private let ribbonView = UIView()
-    private let dateView = InfoView()
-    private let stackView = UIStackView()
     
     init() {
         super.init(frame: .zero)
@@ -132,6 +130,7 @@ extension CollapsedPreviewView {
         pledgeView.topLabel.text = "PLEDGE"
         weightView.topLabel.text = "WEIGHT"
         
+        let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fillProportionally
         stackView.makeAutoLayout()
