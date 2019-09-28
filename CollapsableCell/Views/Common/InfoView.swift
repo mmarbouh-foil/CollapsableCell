@@ -10,12 +10,47 @@ import UIKit
 
 class InfoView: UIView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    let topLabel = UILabel()
+    let bottomLabel = UILabel()
+    
+    private let stackView = UIStackView()
+    
+    init() {
+        super.init(frame: .zero)
+        
+        configureViews()
+        
+        addSubview(stackView)
+        
+        stackView.addArrangedSubview(topLabel)
+        stackView.addArrangedSubview(bottomLabel)
+        
+        stackView.constrain()
     }
-    */
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setTextColour(_ colour: UIColor) {
+        topLabel.textColor = colour
+        bottomLabel.textColor = colour
+    }
+    
+    private func configureViews() {
+        configureLabel(topLabel)
+        configureLabel(bottomLabel)
+        
+        topLabel.font = .systemFont(ofSize: 12)
+        bottomLabel.font = .systemFont(ofSize: UIFont.labelFontSize, weight: .semibold)
+        
+        stackView.axis = .vertical
+        stackView.makeAutoLayout()
+    }
+    
+    private func configureLabel(_ label: UILabel) {
+        label.makeAutoLayout()
+        label.textColor = .gray
+    }
 
 }

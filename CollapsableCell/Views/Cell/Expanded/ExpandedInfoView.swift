@@ -10,12 +10,27 @@ import UIKit
 
 class ExpandedInfoView: UIView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    let leftView = InfoView()
+    let rightView = InfoView()
+    
+    private let stackView = UIStackView()
+    
+    init() {
+        super.init(frame: .zero)
+        
+        stackView.axis = .horizontal
+        stackView.makeAutoLayout()
+        
+        addSubview(stackView)
+        
+        stackView.addArrangedSubview(leftView)
+        stackView.addArrangedSubview(rightView)
+        
+        stackView.constrain()
     }
-    */
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
 }
