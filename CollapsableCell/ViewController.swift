@@ -56,7 +56,7 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 50
+        return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -83,6 +83,8 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! CollapsableTableViewCell
         
+        tableView.beginUpdates()
+        
         if cell.isExpanded() {
             expandedIndices.removeAll(where: {$0 == indexPath.row})
             cell.collapse()
@@ -91,7 +93,7 @@ extension ViewController: UITableViewDelegate {
             cell.expand()
         }
         
-        tableView.reloadRows(at: [indexPath], with: .automatic)
+        tableView.endUpdates()
     }
     
 }

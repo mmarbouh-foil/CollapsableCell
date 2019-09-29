@@ -246,7 +246,7 @@ extension ExpandedCellView {
             
             addressView.topAnchor.constraint(equalTo: infoViewsContainerView.topAnchor),
             separatorView.topAnchor.constraint(equalTo: addressView.bottomAnchor, constant: ViewConstants.padding),
-            deliveryView.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: ViewConstants.padding)
+            deliveryView.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: ViewConstants.padding),
         ])
     }
     
